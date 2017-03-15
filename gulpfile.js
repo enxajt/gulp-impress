@@ -32,7 +32,7 @@ gulp.task('ejs', function() {
   gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
 
-    //.pipe(replace(/^[^#\-]/gm, '  '))
+    .pipe(replace(/^[^が]/gm, '  '))
     .pipe(replace(/^# (.*)$/gm, '  <h1>$1</h1>'))
     .pipe(replace(/^## (.*)$/gm, '  <h2>$1</h2>'))
     .pipe(replace(/^---$/gm, "</div>\n\n<div class='step' >"))
