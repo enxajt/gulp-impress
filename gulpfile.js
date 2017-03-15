@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var path = require('path');
-var plantuml = require('gulp-plantuml');
 var webserver = require('gulp-webserver');
 var print = require('gulp-print');
 var tap = require('gulp-tap');
@@ -69,36 +68,10 @@ gulp.task('ejs_image', function() {
     }));
 });
 
-gulp.task('plantuml', function() {
-  return gulp.src(_path.src+'/*.pu')
-  .pipe(cached('plantuml'))
-  .pipe(plumber())
-  .pipe(plantuml({
-    jarPath: "/usr/bin/plantuml.jar"
-  }))
-  .on('error',function(error){
-      console.log(error.message);
-      gulp.src('./')
-        .pipe(exec('echo "'+error.message+'" >> ./ejs/_error.ejs'));
-      this.emit('end');
-  })
-  .pipe(gulp.dest(_path.dst))
-  .pipe(print(function(filepath) {
-    return "planted: " + filepath;
-  }))
-  .pipe(gulp.dest(_path.src))
-  .pipe(print(function(filepath) {
-    gulp.src('./')
-      .pipe(exec('echo > ./ejs/_error.ejs'));
-    return "planted: " + filepath;
-  }));
-});
-
 gulp.task('watch', function() {
   gulp.watch([_path.dst+'/*.png'],['ejs_image']);
   gulp.watch([_path.ejs+'/_error.ejs'],['ejs_error']);
-  gulp.watch([_path.src+'/*.pu'],['plantuml']);
   gulp.src('gulpfile.js');
 });
 
-gulp.task('default', ['watch', 'webserver','plantuml','ejs_image']);
+gulp.task('default', ['watch', 'webserver','ejs_image']);
