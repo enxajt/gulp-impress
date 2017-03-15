@@ -32,10 +32,11 @@ gulp.task('ejs', function() {
   gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
 
+    .pipe(replace(/^[^#-]/gm, '  '))
     .pipe(replace(/^# (.*)$/gm, '  <h1>$1</h1>'))
     .pipe(replace(/^## (.*)$/gm, '  <h2>$1</h2>'))
-    .pipe(replace(/^/, "<div class='step' >\n"))
     .pipe(replace(/^---$/gm, "</div>\n\n<div class='step' >"))
+    .pipe(replace(/^/, "<div class='step' >\n"))
 
     .pipe(rename('_pages.ejs'))
     .pipe(gulp.dest(_path.src))
