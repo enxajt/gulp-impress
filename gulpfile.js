@@ -31,11 +31,12 @@ gulp.task('ejs', function() {
   return gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
-      console.log('start ejs');
+      console.log('file.path: '+file.path);
       var filename = path.basename(file.path);
+      console.log('filename: '+filename);
       var title = filename.split(/\.(?=[^.]+$)/)[1];
+      console.log('title: '+title);
       var css = title+'.css';
-      console.log('before ejs: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
           title: title,
