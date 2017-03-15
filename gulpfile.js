@@ -33,7 +33,7 @@ gulp.task('ejs', function() {
     //.pipe(cached('ejs'))
 
     .pipe(replace(/^# (.*)$/g, '<h1>\1</h1>'))
-    .pipe(replace(/#/g, 'h1'))
+    .pipe(replace(/#/g, '<h1>'))
 
     .pipe(rename('_pages.ejs'))
     .pipe(gulp.dest(_path.ejs))
