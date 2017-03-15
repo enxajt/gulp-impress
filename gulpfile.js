@@ -33,11 +33,9 @@ gulp.task('ejs', function() {
     .pipe(tap(function(file,t) {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
-      console.log('title0: '+title);
-      var title = filename.split(/\.(?=[^.]+$)/)[1];
-      console.log('title1: '+title);
-      var title = filename.split(/\.(?=[^.]+$)/)[2];
-      console.log('title2: '+title);
+      console.log('title: '+title);
+      title = title.split(/\.(?=[^.]+$)/)[0];
+      console.log('title: '+title);
       var css = title+'.css';
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
