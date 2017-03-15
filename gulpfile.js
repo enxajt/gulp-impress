@@ -32,8 +32,7 @@ gulp.task('ejs', function() {
   gulp.src(_path.src+'/*.impress.md')
     //.pipe(cached('ejs'))
 
-    .pipe(replace(/# (.*)/, '<h1>$1</h1>'))
-    .pipe(replace(/^#/g, '<h></h>'))
+    .pipe(replace(/^# (.*)$/m, '<h1>$1</h1>'))
 
     .pipe(rename('_pages.ejs'))
     .pipe(gulp.dest(_path.ejs))
