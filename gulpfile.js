@@ -28,7 +28,7 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('ejs', function() {
-  return gulp.src(_path.dst+'/*.impress.md')
+  return gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
       console.log('start ejs');
@@ -41,7 +41,7 @@ gulp.task('ejs', function() {
           title: title,
           css: css
         }))
-        .pipe(rename(img_name+'.html'))
+        .pipe(rename(title+'.html'))
         .pipe(gulp.dest(_path.dst))
         .pipe(print(function(filepath) {
           return "ejs: " + filepath;
