@@ -9,10 +9,10 @@ var rename = require('gulp-rename');
 var cached = require('gulp-cached');
 var plumber = require('gulp-plumber');
 var fs = require('fs');
+var replace = require('gulp-replace');
 
 var _path = {
   src : './src',
-  dst : './dst',
   ejs : './ejs'
 };
 
@@ -28,12 +28,23 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('ejs', function() {
+  //TODO md > pages.ejs
+  return gulp.src(_path.src+'/*.impress.md')
+    .pipe(cached('ejs'))
+
+    .pipe(replace(/^# (.*)$/g, '<h1>\1</h1>'))
+
+    .pipe(rename('_pages.ejs'))
+    .pipe(gulp.dest(_path.ejs))
+    .pipe(print(function(filepath) {
+      return "pages: " + filepath;
+    }));
+
   return gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
-      console.log('title: '+title);
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
@@ -43,10 +54,12 @@ gulp.task('ejs', function() {
           css: css
         }))
         .pipe(rename(title+'.html'))
-        .pipe(gulp.dest(_path.dst))
+        .pipe(gulp.dest(_path.src))
         .pipe(print(function(filepath) {
           return "ejs: " + filepath;
         }));
+      gulp.src('./')
+        .pipe(exec('cp ./src/impress.css ./src/"'+title+'".css'));
     }));
 });
 
