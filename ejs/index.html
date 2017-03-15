@@ -1,11 +1,76 @@
-<html lang="ja">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title><%= img_name %></title>
+  <title><%= title %></title>
+  <link href="css/reset.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="shortcut icon" href="css/favicon.png" />
+  <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+  <!-- Code Prettifier: -->
+  <link href="css/highlight.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>
+
+  <link href="<%= css %>" rel="stylesheet" />
+
 </head>
+
 <body>
-<% include _error %>
 
-<img src="<%= img_file %>">
+<div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
 
-<% include _foot %>
+<div id="impress">
+
+<div class='step' >
+  <h1>事業企画室小谷紘平</h1>
+  <h1>2017年度計画</h1>
+</div>
+
+<div class='step' >
+  <h1>目標</h1>
+  イセトーのニュービジネスを念頭に置きながら、日仏それぞれのベンダー、技術、知識を使って共同開発</br>
+  <h1>社内稟議</h1>
+  １，２年はフランスの経験を生かすことを考える。</br>
+</div>
+
+<div class='step' >
+  <h1>ハイブリッドメール</h1>
+  DataOneのハイブリッドメールソリューション（SendEasy・PostOne）をイセトーのクリッパーメールと比較し調査を継続する。</br>
+  </br>
+  SendEasyはサービスセンターのオペレーターのアウトバウンド業務に最適化したソリューションであり、極力少ない操作で、エンドユーザーへの書類発送を行うことができる。 テレコム向けに開発したが、TV局などに営業中である。</br>
+  PostOneはオフィス全般を対象としている。</br>
+</div>
+
+<div class='step' >
+  <h1>ハイブリッドメール</h1>
+  <h2>現状</h2>
+  機械が入って、森さんが営業、KRCがソフトウェアを改善</br>
+  <h2>課題</h2>
+  SystemDや会計ソフトなどの既存プラットフォームのプリンタドライバにバンドル</br>
+</div>
+
+<div class='step' >
+  <h1>学生アルバイト</h1>
+  外注するにせよシステム開発や新規事業のトライ＆エラーを回せるグループを作る。</br>
+  PC10で出たアイディア、例えば家計簿アプリでもISETOの名前でリリースする。</br>
+  アイディア &gt; 開発 &gt; リリース &gt; ユーザーデータ分析 &gt; アイディア</br>
+  情報工学系の学生バイトを集めて、開発させて、お互いに良さそうなら卒業時に入社してもらう。</br>
+  <h2>HTML5 video</h2>
+  <h2>PostaPrinta</h2>
+  <h2>家計簿アプリ</h2>
+  エンドユーザーが知りたいのは、明細ではなく家計のバランス</br>
+  節約しないといけないのか、支出しても問題ないのかの判断</br>
+  Moneyfoward にない機能は何か</br>
+</div>
+
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+</body>
+
+</html>

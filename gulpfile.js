@@ -27,51 +27,30 @@ gulp.task('webserver',function() {
     }));
 });
 
-//TODO ejs cut a common part 
-
-gulp.task('ejs_error', function() {
-  return gulp.src(_path.dst+'/*.png')
-    .pipe(tap(function(file,t) {
-      var img_file = path.basename(file.path);
-      var img_name = img_file.split(/\.(?=[^.]+$)/)[0];
-      console.log('ejs_error_before: '+img_file);
-      gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
-        .pipe(ejs({
-          img_file: img_file,
-          img_name: img_name
-        }))
-        .pipe(rename(img_name+'.html'))
-        .pipe(gulp.dest(_path.dst))
-        .pipe(print(function(filepath) {
-          return "ejs_error: " + filepath;
-        }));
-    }));
-});
-
-gulp.task('ejs_image', function() {
-  return gulp.src(_path.dst+'/*.png')
+gulp.task('ejs', function() {
+  return gulp.src(_path.dst+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
-      var img_file = path.basename(file.path);
-      var img_name = img_file.split(/\.(?=[^.]+$)/)[0];
-      console.log('before ejs: '+img_file);
+      var filename = path.basename(file.path);
+      var title = filename.split(/\.(?=[^.]+$)/)[0];
+      var css = title+'.css';
+      console.log('before ejs: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
-          img_file: img_file,
-          img_name: img_name
+          title: title 
+          css: css
         }))
         .pipe(rename(img_name+'.html'))
         .pipe(gulp.dest(_path.dst))
         .pipe(print(function(filepath) {
-          return "ejs_image: " + filepath;
+          return "ejs: " + filepath;
         }));
     }));
 });
 
 gulp.task('watch', function() {
-  gulp.watch([_path.dst+'/*.png'],['ejs_image']);
-  gulp.watch([_path.ejs+'/_error.ejs'],['ejs_error']);
+  gulp.watch([_path.src+'/*.impress.md'],['ejs']);
   gulp.src('gulpfile.js');
 });
 
-gulp.task('default', ['watch', 'webserver','ejs_image']);
+gulp.task('default', ['watch', 'webserver','ejs']);
