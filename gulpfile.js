@@ -37,7 +37,7 @@ gulp.task('ejs', function() {
       console.log('before ejs: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
-          title: title 
+          title: title,
           css: css
         }))
         .pipe(rename(img_name+'.html'))
