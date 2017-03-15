@@ -31,8 +31,9 @@ gulp.task('ejs', function() {
   return gulp.src(_path.dst+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
+      console.log('start ejs');
       var filename = path.basename(file.path);
-      var title = filename.split(/\.(?=[^.]+$)/)[0];
+      var title = filename.split(/\.(?=[^.]+$)/)[1];
       var css = title+'.css';
       console.log('before ejs: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
