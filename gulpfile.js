@@ -37,7 +37,7 @@ gulp.task('ejs', function() {
       console.log('title: '+title);
       var css = title+'.css';
       gulp.src('./')
-        .pipe(exec('cp ./src/'+title+' ./src/_pages.md'))
+        .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
         .pipe(exec('sh ./src/replace.sh'))
         .pipe(exec('cp ./src/_pages.ejs ejs/'));
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
