@@ -43,7 +43,7 @@ gulp.task('ejs', function() {
         .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
         .pipe(exec('sh ./src/replace.sh'))
         .pipe(exec('cp ./src/_pages.ejs ./ejs/_pages.ejs'))
-        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/impress.css ./src/'+css))
+        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/impress.css ./src/'+css+' ; fi'))
         .pipe(ejs({
           title: title,
           css: css
@@ -53,9 +53,9 @@ gulp.task('ejs', function() {
         .pipe(print(function(filepath) {
           return "ejs: " + filepath;
         }))
-        //.pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'));
+        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'));
         //.pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/plan_kohei_2017.html ./src/plan_kohei_2017.pdf'));
-        .pipe(exec('echo test > test.ttss'));
+        //.pipe(exec('echo test > test.ttss'));
     }));
 });
 
