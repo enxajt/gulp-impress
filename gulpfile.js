@@ -28,10 +28,6 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('ejs', function() {
-  //TODO md > pages.ejs
-  gulp.src('./')
-    .pipe(exec('sh ./src/replace.sh'))
-    .pipe(exec('cp ./src/_pages.ejs ejs/'));
   return gulp.src(_path.src+'/*.impress.md')
     .pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
@@ -40,6 +36,10 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
+      gulp.src('./')
+        .pipe(exec('cp ./src/'+title+' ./src/_pages.md'))
+        .pipe(exec('sh ./src/replace.sh'))
+        .pipe(exec('cp ./src/_pages.ejs ejs/'));
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
           title: title,
