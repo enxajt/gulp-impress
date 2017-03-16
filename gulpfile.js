@@ -36,12 +36,13 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
-      gulp.src('./src/')
+      gulp.src('./')
         .pipe(exec('rm -f ./src/_pages.md'))
         .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
         .pipe(exec('rm -f ./src/_pages.ejs'))
         .pipe(exec('sh ./src/replace.sh'))
-        .pipe(exec('cp ./src/_pages.ejs ejs/'));
+        .pipe(exec('cp ./src/_pages.ejs ./ejs/_pages.ejs'))
+        .pipe(exec('cp ./src/impress.css ./src/"'+title+'".css'));
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(ejs({
           title: title,
@@ -52,8 +53,6 @@ gulp.task('ejs', function() {
         .pipe(print(function(filepath) {
           return "ejs: " + filepath;
         }));
-      gulp.src('./')
-        .pipe(exec('cp ./src/impress.css ./src/"'+title+'".css'));
     }));
 });
 
