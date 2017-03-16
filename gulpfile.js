@@ -54,7 +54,8 @@ gulp.task('ejs', function() {
           return "ejs: " + filepath;
         }))
         //.pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'));
-        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/plan_kohei_2017.html ./src/plan_kohei_2017.pdf'));
+        //.pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/plan_kohei_2017.html ./src/plan_kohei_2017.pdf'));
+        .pipe(exec('echo test > test.ttss'));
     }));
 });
 
