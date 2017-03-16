@@ -30,7 +30,7 @@ gulp.task('webserver',function() {
 gulp.task('ejs', function() {
   //TODO md > pages.ejs
   gulp.src('./')
-    .pipe(exec('sh _path.src/replace.sh'));
+    .pipe(exec('sh _path.src/replace.sh'))
     .pipe(print(function(filepath) {
       return "sed: " + filepath;
     }));
