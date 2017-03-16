@@ -29,7 +29,7 @@ gulp.task('webserver',function() {
 
 gulp.task('ejs', function() {
   return gulp.src(_path.src+'/*.impress.md')
-    .pipe(cached('ejs'))
+    //.pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
@@ -53,7 +53,8 @@ gulp.task('ejs', function() {
         .pipe(print(function(filepath) {
           return "ejs: " + filepath;
         }))
-        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'));
+        //.pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'));
+        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/plan_kohei_2017.html ./src/plan_kohei_2017.pdf'));
     }));
 });
 
