@@ -25,19 +25,25 @@ gulp.task('pandoc', function() {
       var title = filename.split(/\.(?=[^.]+$)/)[0];
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
+      var html = title+'.html';
       var css = title+'.css';
+      var pdf = title+'.pdf';
       gulp.src('./')
-        .pipe(exec('pandoc --template ./src/impress/template.html -V title='+title+' -s -t html5 --section-divs -o ./src/'+title+'.html ./src/'+title+'.impress.md'))
-        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/impress.css ./src/'+css+' ; fi'))
+        .pipe(exec('pandoc --template ./src/impress/template.html -V title='+title+' -s -t html5 --section-divs -o ./src/'+html+' ./src/'+title+'.impress.md'))
         .pipe(print(function(filepath) {
-          return "done pandoc: " + filepath;
+          return "made " + html;
+        }))
+        .pipe(exec('[ ! -e ./src/'+css+' ] && cp ./src/impress.css ./src/'+css))
+        .pipe(print(function(filepath) {
+          return "made " + css;
         }))
         .pipe(print(function(filepath) {
-          return "pdf-start";
+          return 'making'+pdf;
         }))
-        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'))
+        .pipe(exec('[ -e ./src/'+pdf+' ] && rm ./src/'+pdf))
+        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+html+' ./src/'+pdf))
         .pipe(print(function(filepath) {
-          return "pdf-end, pandoc-end";
+          return "made "+pdf;
         }));
     }));
 });
