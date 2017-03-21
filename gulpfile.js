@@ -33,7 +33,7 @@ gulp.task('pandoc', function() {
         .pipe(print(function(filepath) {
           return "made " + html;
         }))
-        .pipe(exec('[ ! -e ./src/'+css+' ] && cp ./src/impress.css ./src/'+css))
+        .pipe(exec('[ ! -e ./src/'+css+' ] && cp ./src/impress/template.css ./src/'+css))
         .pipe(print(function(filepath) {
           return "made " + css;
         }))
