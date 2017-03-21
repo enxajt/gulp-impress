@@ -18,7 +18,7 @@ gulp.task('webserver',function() {
 });
 
 gulp.task('pandoc', function() {
-  return gulp.src(_path.src+'/*.impress.md')
+  return gulp.src('./src/*.impress.md')
     //.pipe(cached('pandoc'))
     .pipe(tap(function(file,t) {
       var filename = path.basename(file.path);
@@ -43,7 +43,7 @@ gulp.task('pandoc', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch([_path.src+'/*.impress.md'],['pandoc']);
+  gulp.watch(['./src/*.impress.md'],['pandoc']);
   gulp.src('gulpfile.js');
 });
 
