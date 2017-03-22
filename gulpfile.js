@@ -35,12 +35,12 @@ gulp.task('ejs', function() {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
       title = title.split(/\.(?=[^.]+$)/)[0];
-      console.log('path: '+file.path);
       console.log('title: '+title);
       var css = title+'.css';
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(fs.readFile("./src/impress/replace.sh", "utf-8", function(err, _data) {
           var sed = _data;
+          console.log('sed: '+sed);
           gulp.src('./')
             .pipe(exec('cat '+file.path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
             .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
