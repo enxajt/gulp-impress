@@ -43,7 +43,7 @@ gulp.task('ejs', function() {
         .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
         .pipe(exec('sh ./src/impress/replace.sh'))
         .pipe(exec('cp ./src/_pages.ejs ./ejs/_pages.ejs'))
-        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/impress.css ./src/'+css+' ; fi'))
+        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/template.css ./src/'+css+' ; fi'))
         .pipe(ejs({
           title: title,
           css: css
