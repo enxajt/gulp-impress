@@ -42,7 +42,7 @@ gulp.task('ejs', function() {
         .pipe(fs.readFile("./src/impress/replace.sh", "utf-8", function(err, _data) {
           var sed = _data;
           gulp.src('./')
-            .pipe(exec('cat '+path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
+            .pipe(exec('cat '+file.path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
             .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
             .pipe(exec('rm -f ./src/impress/'+title+'.html'))
         }))
