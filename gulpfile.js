@@ -40,9 +40,9 @@ gulp.task('ejs', function() {
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(console.log('test: '+title))
+        .pipe(console.log('test: '+title))
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
-        .pipe(console.log('test: '+title))
         .pipe(exec('echo test'))
         .pipe(exec('echo test > ./ttss'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
