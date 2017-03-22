@@ -42,6 +42,7 @@ gulp.task('ejs', function() {
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
         .pipe(console.log('test1'))
+        .pipe(console.log('test2'))
         .pipe(exec('echo test'))
         .pipe(console.log('test2'))
         .pipe(exec('echo test > ./ttss'))
