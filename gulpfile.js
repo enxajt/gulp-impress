@@ -38,7 +38,7 @@ gulp.task('pandoc', function() {
           return "made " + css;
         }))
         .pipe(print(function(filepath) {
-          return 'making'+pdf;
+          return 'making '+pdf;
         }))
         .pipe(exec('[ -e ./src/'+pdf+' ] && rm ./src/'+pdf+' || echo nonexisting'))
         .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+html+' ./src/'+pdf))
