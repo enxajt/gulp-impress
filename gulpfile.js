@@ -43,7 +43,7 @@ gulp.task('ejs', function() {
         .pipe(exec('cat '+file.path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        .pipe(fs.readFile('./src/impress/'+title+'.html', "utf-8", function(err, _data) {
+        .pipe(fs.readFileSync('./src/impress/'+title+'.html', "utf-8", function(err, _data) {
           console.log('test_sed: '+sed);
           var pages = _data;
         }))
