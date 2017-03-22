@@ -38,14 +38,14 @@ gulp.task('ejs', function() {
       console.log('title: '+title);
       var css = title+'.css';
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
-      console.log('sed: '+sed);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(exec('cat '+file.path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
         .pipe(fs.readFileSync('./src/impress/'+title+'.html', "utf-8", function(err, _data) {
-          console.log('test_sed: '+sed);
+          console.log('test_sed: ');
           var pages = _data;
+          console.log('pages: '+pages);
         }))
         .pipe(ejs({
           title: title,
