@@ -16,16 +16,16 @@ var _path = {
   ejs : './ejs'
 };
 
-gulp.task('webserver',function() {
-  return gulp.src('./')
-    .pipe(webserver({
-      livereload: true,
-      host: '0.0.0.0',
-      port: '8000',
-      open: true,
-      directoryListing: true
-    }));
-});
+// gulp.task('webserver',function() {
+//   return gulp.src('./')
+//     .pipe(webserver({
+//       livereload: true,
+//       host: '0.0.0.0',
+//       port: '8000',
+//       open: true,
+//       directoryListing: true
+//     }));
+// });
 
 gulp.task('ejs', function() {
   return gulp.src(_path.src+'/*.impress.md')
@@ -37,6 +37,7 @@ gulp.task('ejs', function() {
       console.log('title: '+title);
       var css = title+'.css';
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
+      console.log('sed: '+sed);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
