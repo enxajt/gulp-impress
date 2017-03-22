@@ -35,7 +35,7 @@ gulp.task('ejs', function() {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
       title = title.split(/\.(?=[^.]+$)/)[0];
-      console.log('path: '+path);
+      console.log('path: '+file.path);
       console.log('title: '+title);
       var css = title+'.css';
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
