@@ -27,9 +27,6 @@ gulp.task('webserver',function() {
     }));
 });
 
-// TODO
-pandoc --template ./src//impress-template.html -V title=test -s -t html5 --section-divs -o /vagrant/shared/test.html ~/.pandoc/test.impress.md  
-
 gulp.task('ejs', function() {
   return gulp.src(_path.src+'/*.impress.md')
     //.pipe(cached('ejs'))
