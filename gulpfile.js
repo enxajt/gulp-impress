@@ -10,6 +10,7 @@ var cached = require('gulp-cached');
 var plumber = require('gulp-plumber');
 var fs = require('fs');
 var replace = require('gulp-replace');
+var fs = require("fs");
 
 var _path = {
   src : './src',
@@ -34,19 +35,25 @@ gulp.task('ejs', function() {
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
       title = title.split(/\.(?=[^.]+$)/)[0];
+      console.log('path: '+path);
       console.log('title: '+title);
       var css = title+'.css';
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
-        .pipe(exec('rm -f ./src/_pages.md'))
-        .pipe(exec('rm -f ./src/_pages.ejs'))
-        .pipe(exec('rm -f ./src/'+title+'.html'))
-        .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
-        .pipe(exec('sh ./src/impress/replace.sh'))
-        .pipe(exec('cp ./src/_pages.ejs ./ejs/_pages.ejs'))
-        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/template.css ./src/'+css+' ; fi'))
+        .pipe(fs.readFile("./src/impress/replace.sh", "utf-8", function(err, _data) {
+          var sed = _data;
+          gulp.src('./')
+            .pipe(exec('cat '+path+' > '+sed+' > ./src/'+title+'_pages.ejs'))
+            .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
+            .pipe(exec('rm -f ./src/impress/'+title+'.html'))
+        }))
+        .pipe(fs.readFile('./src/impress/'+title+'.html', "utf-8", function(err, _data) {
+          console.log('test_sed: '+sed);
+          var pages = _data;
+        }))
         .pipe(ejs({
           title: title,
-          css: css
+          css: css,
+          pages: pages
         }))
         .pipe(rename(title+'.html'))
         .pipe(gulp.dest(_path.src))
