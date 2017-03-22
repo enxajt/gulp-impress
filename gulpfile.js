@@ -37,7 +37,9 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
+      console.log('title: '+title);
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
+      console.log('title: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(print(function(filepath) {
           return "test1: " + filepath;
