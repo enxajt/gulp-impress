@@ -39,6 +39,7 @@ gulp.task('ejs', function() {
       var css = title+'.css';
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
+        .pipe(exec('echo test > ./ttss'))
         .pipe(console.log('test: '+title))
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("cat '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
