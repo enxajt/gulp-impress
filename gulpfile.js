@@ -44,11 +44,11 @@ gulp.task('ejs', function() {
         .pipe(exec('echo test > ./ttss'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        .pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
-          console.log('test_sed: ');
-          var pages = _data;
-          console.log('pages: '+pages);
-        }))
+        //.pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
+        //  console.log('test_sed: ');
+        //  var pages = _data;
+        //  console.log('pages: '+pages);
+        //}))
         .pipe(ejs({
           title: title,
           css: css,
