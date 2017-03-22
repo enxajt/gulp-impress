@@ -37,22 +37,13 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       var css = title+'.css';
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
-      console.log('title: '+title);
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(console.log('title: '+title))
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
-        .pipe(exec("cat '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
-        .pipe(print(function(filepath) {
-          return "test2: ";
-        }))
+        //.pipe(exec("cat '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
+        .pipe(exec('echo test > ./ttss'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
-        .pipe(print(function(filepath) {
-          return "test3: " + filepath;
-        }))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        .pipe(print(function(filepath) {
-          return "test4: " + filepath;
-        }))
         .pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
           console.log('test_sed: ');
           var pages = _data;
