@@ -31,6 +31,7 @@ gulp.task('ejs', function() {
   return gulp.src(_path.src+'/*.impress.md')
     //.pipe(cached('ejs'))
     .pipe(tap(function(file,t) {
+      console.log('file.path: '+file.path);
       var filename = path.basename(file.path);
       var title = filename.split(/\.(?=[^.]+$)/)[0];
       title = title.split(/\.(?=[^.]+$)/)[0];
@@ -40,7 +41,7 @@ gulp.task('ejs', function() {
       var sed = fs.readFile("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         //.pipe(exec('cat "'+file.path+'" > '+ejs))
-        .pipe(exec('cat ./gulpfile.js > ./test'))
+        .pipe(exec('touch ./test'))
         //.pipe(exec('cat '+file.path+' > '+sed+' > '+ejs))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
