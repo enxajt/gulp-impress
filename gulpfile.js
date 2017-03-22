@@ -42,12 +42,14 @@ gulp.task('ejs', function() {
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
         .pipe(console.log('test1'))
-        .pipe(exec('echo test > ./ttss'))
+        .pipe(exec('echo test'))
         .pipe(console.log('test2'))
-        .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
+        .pipe(exec('echo test > ./ttss'))
         .pipe(console.log('test3'))
-        .pipe(exec('rm -f ./src/impress/'+title+'.html'))
+        .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(console.log('test4'))
+        .pipe(exec('rm -f ./src/impress/'+title+'.html'))
+        .pipe(console.log('test5'))
         .pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
           console.log('test_sed: ');
           var pages = _data;
