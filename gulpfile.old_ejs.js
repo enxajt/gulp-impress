@@ -37,13 +37,7 @@ gulp.task('ejs', function() {
       console.log('title: '+title);
       var css = title+'.css';
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
-        .pipe(exec('rm -f ./src/_pages.md'))
-        .pipe(exec('rm -f ./src/_pages.ejs'))
-        .pipe(exec('rm -f ./src/'+title+'.html'))
-        .pipe(exec('cp ./src/'+filename+' ./src/_pages.md'))
-        .pipe(exec('sh ./src/replace.sh'))
-        .pipe(exec('cp ./src/_pages.ejs ./ejs/_pages.ejs'))
-        .pipe(exec('if [ ! -e ./src/'+css+' ]; then cp ./src/impress.css ./src/'+css+' ; fi'))
+        .pipe(exec('echo test > ./ttss'))
         .pipe(ejs({
           title: title,
           css: css
@@ -57,7 +51,6 @@ gulp.task('ejs', function() {
         .pipe(print(function(filepath) {
           return "pdf-start";
         }))
-        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'))
         .pipe(print(function(filepath) {
           return "pdf-end";
         }))
