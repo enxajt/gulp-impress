@@ -40,7 +40,7 @@ gulp.task('ejs', function() {
       var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         .pipe(console.log('test: '+title))
-        .pipe(console.log('test: '+title))
+        .pipe(console.log('test2: '+title))
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
         .pipe(exec('echo test'))
