@@ -36,9 +36,7 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
-      //var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
-      //console.log('sed ok');
-      //gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
+      var sed = fs.readFileSync("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
