@@ -40,8 +40,8 @@ gulp.task('ejs', function() {
         .pipe(exec('echo test > ./ttss'))
         .pipe(ejs({
           title: title,
-          pages: title,
-          css: css
+          css: css,
+          pages: title
         }))
         .pipe(rename(title+'.html'))
         .pipe(gulp.dest(_path.src))
