@@ -36,12 +36,13 @@ gulp.task('ejs', function() {
       title = title.split(/\.(?=[^.]+$)/)[0];
       console.log('title: '+title);
       var css = title+'.css';
+      var ejs = './src/impress/'+title+'_pages.ejs';
       var sed = fs.readFile("./src/impress/replace.sh", "utf8");
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
-        .pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
+        .pipe(exec('cat '+file.path+' > '+sed+' > '+ejs))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        .pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
+        .pipe(fs.readFileSync(ejs, "utf-8", function(err, _data) {
           console.log('test');
           var pages = _data;
           console.log('pages: '+pages);
