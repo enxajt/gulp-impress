@@ -40,33 +40,33 @@ gulp.task('ejs', function() {
       gulp.src(["./ejs/index.html","!./ejs/*.ejs"])
         //.pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         //.pipe(exec("ckt '"+file.path+"' > ./src/impress/"+title+"_pages.ejs"))
-        //.pipe(exec('echo test'))
-        //.pipe(exec('echo test > ./ttss'))
-        //.pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
-        //.pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        //.pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
-        //  console.log('test_sed: ');
-        //  var pages = _data;
-        //  console.log('pages: '+pages);
-        //}))
-        // .pipe(ejs({
-        //   title: title,
-        //   css: css,
-        //   pages: pages
-        // }))
-        // .pipe(rename(title+'.html'))
-        // .pipe(gulp.dest(_path.src))
-        // .pipe(print(function(filepath) {
-        //   return "ejs: " + filepath;
-        // }))
-        // //.pipe(cached('ejs'))
-        // .pipe(print(function(filepath) {
-        //   return "pdf-start";
-        // }))
-        // .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'))
-        // .pipe(print(function(filepath) {
-        //   return "pdf-end";
-        // }))
+        .pipe(exec('echo test'))
+        .pipe(exec('echo test > ./ttss'))
+        .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
+        .pipe(exec('rm -f ./src/impress/'+title+'.html'))
+        .pipe(fs.readFileSync('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
+          console.log('test_sed: ');
+          var pages = _data;
+          console.log('pages: '+pages);
+        }))
+        .pipe(ejs({
+          title: title,
+          css: css,
+          pages: pages
+        }))
+        .pipe(rename(title+'.html'))
+        .pipe(gulp.dest(_path.src))
+        .pipe(print(function(filepath) {
+          return "ejs: " + filepath;
+        }))
+        //.pipe(cached('ejs'))
+        .pipe(print(function(filepath) {
+          return "pdf-start";
+        }))
+        .pipe(exec('./decktape-1.0.0/phantomjs ./decktape-1.0.0/decktape.js impress ./src/'+title+'.html ./src/'+title+'.pdf'))
+        .pipe(print(function(filepath) {
+          return "pdf-end";
+        }))
         .pipe(print(function(filepath) {
           return "ejs-end";
         }));
