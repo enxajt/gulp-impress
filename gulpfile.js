@@ -41,9 +41,8 @@ gulp.task('ejs', function() {
         .pipe(exec('cat '+file.path+' > '+sed+' > ./src/impress/'+title+'_pages.ejs'))
         .pipe(exec('[ -e ./src/'+css+' ] || cp ./src/impress/template.css ./src/'+css))
         .pipe(exec('rm -f ./src/impress/'+title+'.html'))
-        .pipe(console.log('test1'))
-        .pipe(fs.readFile('./src/impress/'+title+'_pages.ejs', "utf-8", function(err, _data) {
-          console.log('test2');
+        .pipe(fs.readFile('./src/impress/'+title+'_pages.ejs', "utf-8" {
+          console.log('test');
           var pages = _data;
           console.log('pages: '+pages);
         }))
